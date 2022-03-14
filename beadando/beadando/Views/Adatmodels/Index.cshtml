@@ -1,0 +1,67 @@
+﻿@model beadando.Models.Arukereses
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-controller="Adatmodels" asp-action="Index" method="post">
+    <div class="row">
+  <div class="col">
+    <input asp-for="elnevezeskereses" type="text" class="form-control" placeholder="Elnevezes" aria-label="Elnevezes">
+  </div>
+  <div class="col">
+    <select asp-for="kategoriaKereses" asp-items="Model.kategorialista" class="form-select" aria-label="Kategoria">
+    <option value="" selected>Mindegyik</option>
+    </select>
+</div>
+  <button type="submit" class="btn btn-success">Keres</button>
+</div>
+</form>
+<table class="col-sm-2 col-lg-12 col-md-6">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Aru[0].Elnevezes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aru[0].Kategoria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aru[0].Csomagolasiegyseg)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aru[0].Darabszam)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Aru) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Elnevezes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kategoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Csomagolasiegyseg)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Darabszam)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+    
+</table>
